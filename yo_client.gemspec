@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = YoClient::VERSION
   spec.authors       = ['Yu Nakanishi']
   spec.email         = ['you@nakanishi.email']
-  spec.summary       = 'Yo Client Library'
-  spec.description   = 'Yo Client Library'
+  spec.summary       = 'Yo (http://www.justyo.co/) Ruby Client'
+  spec.description   = 'Yo (http://www.justyo.co/) Ruby Client'
   spec.homepage      = 'https://github.com/youcune/yo_client'
   spec.license       = 'MIT'
 
@@ -20,8 +20,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rspec', '~> 3.0.0'
   spec.add_development_dependency 'pry-byebug'
-  spec.add_dependency 'faraday'
-  spec.add_dependency 'faraday_middleware'
+  spec.add_dependency 'faraday', '~> 0.9.0'
+  spec.add_dependency 'faraday_middleware', '~> 0.9.0'
+  spec.required_ruby_version = '>= 1.9'
 end
