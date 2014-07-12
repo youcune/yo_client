@@ -5,7 +5,7 @@ require 'faraday_middleware'
 module YoClient
   class Client
     # Constructor
-    # @param [String] token Yo API Token
+    # @param [String] api_token Yo API Token
     def initialize(api_token)
       @api_token = api_token
       @faraday = Faraday.new(url: 'http://api.justyo.co') do |faraday|
@@ -21,7 +21,7 @@ module YoClient
     end
 
     # Yo to specific user
-    # @param [String] username
+    # @param [String] username usename to send yo
     def yo(username)
       @faraday.post '/yo/', token_hash.merge(username: username.upcase)
     end
