@@ -1,6 +1,8 @@
-# YoClient [![Build Status](https://travis-ci.org/youcune/yo_client.svg?branch=master)](https://travis-ci.org/youcune/yo_client)
+# YoClient
 
 is a Ruby client of [Yo](http://www.justyo.co/).
+[![Build Status](https://travis-ci.org/youcune/yo_client.svg?branch=master)](https://travis-ci.org/youcune/yo_client)
+[![Coverage Status](https://coveralls.io/repos/youcune/yo_client/badge.png)](https://coveralls.io/r/youcune/yo_client)
 
 ## Requirements
 
