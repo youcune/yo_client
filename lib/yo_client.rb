@@ -16,26 +16,58 @@ module YoClient
     end
 
     # Yo to all subscribers
+    # @return [Boolean] if request has succeed
     def yoall
-      @faraday.post '/yoall/', token_hash
+      response = connection_wrapper {
+        @faraday.post '/yoall/', token_hash
+      }
+      response.success?
     end
 
     # Yo to specific user
     # @param [String] username usename to send yo
+    # @return [Boolean] if request has succeed
     def yo(username)
-      @faraday.post '/yo/', token_hash.merge(username: username.upcase)
+      response = connection_wrapper {
+        @faraday.post '/yo/', token_hash.merge(username: username.upcase)
+      }
+      response.success?
     end
 
     # Get a number of subscribers
     # @return [Integer] number of subscribers
     def subscribers_count
-      response = @faraday.get '/subscribers_count/', token_hash
+      response = connection_wrapper {
+        @faraday.get '/subscribers_count/', token_hash
+      }
       response.body['result']
     end
 
     private
+      # Connect with error handling
+      # @param [Proc] block
+      def connection_wrapper(&block)
+        begin
+          response = block.call
+          raise ClientError.new(response.body['error']) if response.body.has_key?('error')
+        rescue Faraday::ParsingError => e
+          # Has gotten a response, but it is not formatted with JSON
+          raise ClientError.new(e.message)
+        rescue Faraday::ClientError => e
+          # Failed to build a connection
+          raise ConnectionError.new(e.message)
+        end
+
+        response
+      end
+
+      # Returns hash for every request
+      # @return [Hash] hash for every request
       def token_hash
         { api_token: @api_token }
       end
   end
+
+  class ConnectionError < StandardError; end
+  class ClientError < StandardError; end
 end
