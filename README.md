@@ -2,6 +2,11 @@
 
 is a Ruby client of [Yo](http://www.justyo.co/).
 
+## Requirements
+
+* Ruby 1.9+ (Tested on Ruby 1.9.3, 2.0.0, 2.1.2)
+* [Yo API Account](http://dev.justyo.co/)
+
 ## Installation
 
 Add this line to your application's Gemfile:
