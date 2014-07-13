@@ -18,8 +18,8 @@ describe YoClient do
       it 'hooks POST /yoall/' do
         expect_any_instance_of(Faraday::Connection).to(
           receive(:post)
-          .with('/yoall/', { api_token: 'test' })
-          .and_return(double('yo', body: {}))
+            .with('/yoall/', { api_token: 'test' })
+            .and_return(double('yo', body: {}, success?: true))
         )
         @client.yoall
       end
@@ -29,8 +29,8 @@ describe YoClient do
       it 'hooks POST /yo/' do
         expect_any_instance_of(Faraday::Connection).to(
           receive(:post)
-          .with('/yo/', { api_token: 'test', username: 'YOUCUNE' })
-          .and_return(double('yo', body: {}))
+            .with('/yo/', { api_token: 'test', username: 'YOUCUNE' })
+            .and_return(double('yo', body: {}, success?: true))
         )
         @client.yo('youcune')
       end
@@ -40,7 +40,6 @@ describe YoClient do
       it 'hooks GET /subscribers_count/' do
         expect_any_instance_of(Faraday::Connection).to(
           receive(:get)
-            .with('/subscribers_count/', { api_token: 'test' })
             .and_return(double('subscribers_count', body: { 'result' => 5 }))
         )
         expect(@client.subscribers_count).to eq 5
