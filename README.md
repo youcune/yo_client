@@ -38,7 +38,7 @@ client.yoall(link: 'http://youcune.com/')
 client.yo(USERNAME)
 
 # Yo the specific user with a link (added from v0.1.0)
-client.yoall(USERNAME, link: 'http://youcune.com/')
+client.yo(USERNAME, link: 'http://youcune.com/')
 
 # Count Total Subscribers
 client.subscribers_count # -> 5
