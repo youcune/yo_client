@@ -23,6 +23,15 @@ describe YoClient do
         )
         @client.yoall
       end
+
+      it 'sends Yo with a link' do
+        expect_any_instance_of(Faraday::Connection).to(
+          receive(:post)
+          .with('/yoall/', { api_token: 'test', link: 'http://youcune.com/' })
+          .and_return(double('yo', body: {}, success?: true))
+        )
+        @client.yoall(link: 'http://youcune.com/')
+      end
     end
 
     describe '#yo' do
@@ -33,6 +42,15 @@ describe YoClient do
             .and_return(double('yo', body: {}, success?: true))
         )
         @client.yo('youcune')
+      end
+
+      it 'sends Yo with a link' do
+        expect_any_instance_of(Faraday::Connection).to(
+          receive(:post)
+          .with('/yo/', { api_token: 'test', username: 'YOUCUNE', link: 'http://youcune.com/' })
+          .and_return(double('yo', body: {}, success?: true))
+        )
+        @client.yo('youcune', link: 'http://youcune.com/')
       end
     end
 
