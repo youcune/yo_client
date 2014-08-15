@@ -2,7 +2,6 @@
 
 is a Ruby client of [Yo](http://www.justyo.co/).
 [![Build Status](https://travis-ci.org/youcune/yo_client.svg?branch=master)](https://travis-ci.org/youcune/yo_client)
-[![Coverage Status](https://coveralls.io/repos/youcune/yo_client/badge.png)](https://coveralls.io/r/youcune/yo_client)
 
 ## Requirements
 
@@ -31,9 +30,15 @@ client = YoClient::Client.new(API_TOKEN)
 # Yo all subscribers
 client.yoall
 
-# Yo specific user
+# Yo all subscribers with a link (added from v0.1.0)
+client.yoall(link: 'http://youcune.com/')
+
+# Yo the specific user
 # Note that USERNAME will be upcased before sending to API
 client.yo(USERNAME)
+
+# Yo the specific user with a link (added from v0.1.0)
+client.yoall(USERNAME, link: 'http://youcune.com/')
 
 # Count Total Subscribers
 client.subscribers_count # -> 5
@@ -46,6 +51,16 @@ client.subscribers_count # -> 5
 
 At the date of 13th July, even if API results in failure, it sometimes behaves as if it succeed. In this case, YoClient cannot tell succeeded or not.
 
+## Yo the developer
+
+[Yo YOUCUNE](http://justyo.co/YOUCUNE), the developer of YoClient, if you ...
+
+* like YoClient
+* dislike YoClient
+* have any ideas about YoClient
+
+Thanks.
+
 ## Contributing
 
 1. Fork it ( https://github.com/youcune/yo_client/fork )
@@ -53,13 +68,3 @@ At the date of 13th July, even if API results in failure, it sometimes behaves a
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
-
-## Yo the author
-
-[Yo YOUCUNE](http://justyo.co/YOUCUNE), author of YoClient, if you ...
-
-* like YoClient
-* dislike YoClient
-* have any ideas about YoClient
-
-Thanks.

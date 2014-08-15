@@ -16,20 +16,23 @@ module YoClient
     end
 
     # Yo to all subscribers
+    # @param [Hash] options allowed only link for now
     # @return [Boolean] if request has succeed
-    def yoall
+    def yoall(options = {})
       response = connection_wrapper {
-        @faraday.post '/yoall/', token_hash
+        @faraday.post '/yoall/', token_hash.merge(options)
       }
       response.success?
     end
 
     # Yo to specific user
     # @param [String] username usename to send yo
+    # @param [Hash] options allowed only link for now
     # @return [Boolean] if request has succeed
-    def yo(username)
+    def yo(username, options = {})
+      options.merge!(username: username.upcase)
       response = connection_wrapper {
-        @faraday.post '/yo/', token_hash.merge(username: username.upcase)
+        @faraday.post '/yo/', token_hash.merge(options)
       }
       response.success?
     end
